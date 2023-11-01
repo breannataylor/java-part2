@@ -7,7 +7,7 @@ public class Television {
     private String brand;
     private int volume;
 
-    private Tuner tuner = new Tuner();
+    private final Tuner tuner = new Tuner();
 
     //constructors
     public Television(){
@@ -45,24 +45,42 @@ public class Television {
         this.volume = volume;
     }
 
+    /*
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        // this is an exact type (direct) match, not a IS-A (reference) match
+        if (obj == null || this.getClass() != obj.getClass()) return false;
+        Television that = (Television) obj;
+
+        return getVolume() == that.getVolume() && Objects.equals(getBrand(), that.getBrand());
+    }
+    */
+
     @Override
     public int hashCode(){
+
+        //return getBrand().length() + getVolume();
+
         /*
-         * This is a poorly written hash function, because it easily yields "has collisions."
+         * The above code is a poorly written hash function, because it easily yields "has collisions."
          * A hash collision is when "different" objects have the same hash code (join by coincident.)
-         *
-         *        return getBrand().length() + getVolume();
-         * Instead, we rely on Objects.has() to give us a "scientifically correct" hash function.
          */
+
+       //Instead, we rely on Objects.has() to give us a "scientifically correct" hash function.
         return Objects.hash(getBrand(), getVolume());
     }
 
+
+
     @Override
     public boolean equals(Object obj){
+
         boolean result = false;
 
         //proceed only if 'obj' is really referencing a Television object
-        if (obj instanceof Television){
+        // this is an exact type check
+        if (obj != null && this.getClass() == obj.getClass()){
            //safely downcast 'obj' to more specific reference type Television
            Television other = (Television) obj;
 
@@ -73,6 +91,7 @@ public class Television {
 
         return result;
     }
+
 
     //toString
     @Override
