@@ -26,6 +26,7 @@ public class Order {
     public void processCart(ShoppingCart<? extends Product> cart) {
         System.out.println("Order" + getId() + " contains the following:");
 
+        //you can call methods on the right side of a for statement
         for(Product product : cart.allItems()){
             System.out.println(product.getCode());
         }
