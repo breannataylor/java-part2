@@ -15,7 +15,7 @@ public class EuropeTaxTest {
 
   @Test
   public void testTaxAmountUnder100() {
-    TaxCalculator taxCalc = new EuropeTax();
+     TaxCalculator taxCalc = new EuropeTax();
     assertEquals(17.0, taxCalc.taxAmount(100.0), .001);  // 17% of 100
   }
   
