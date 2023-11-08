@@ -1,6 +1,7 @@
 package org.veggie;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 class RadishSortTest {
@@ -23,8 +24,14 @@ class RadishSortTest {
         dump(radishes);
         System.out.println();
 
-        System.out.println("color, via RadishColorComparator:");
-        radishes.sort(new RadishColorComparator());
+        System.out.println("color, via anonymous Comparator<Radish> class:");
+        //radishes.sort(new RadishColorComparator());
+        radishes.sort(new Comparator<Radish>() {
+            @Override
+            public int compare(Radish r1, Radish r2) {
+                return r1.getColor().compareTo(r2.getColor());
+            }
+        });
         dump(radishes);
         System.out.println();
 
@@ -32,6 +39,18 @@ class RadishSortTest {
         radishes.sort(new RadishSproutsComparator());
         dump(radishes);
         System.out.println();
+
+        System.out.println("sort by tailLength, via anonymous class");
+        //implents radish Comparator - instead of writing an entirely new class that you many never need
+        //anywhere else, you can write an 'on the fly' implementation class that implements the interface
+        radishes.sort(new Comparator<Radish>() {
+            //compare method
+            @Override
+            public int compare(Radish r1, Radish r2) {
+                return Double.compare(r1.getTailLength(), r2.getTailLength());
+            }
+        });
+        dump(radishes);
     }
 
     private static void dump(List<Radish> radishes) {
