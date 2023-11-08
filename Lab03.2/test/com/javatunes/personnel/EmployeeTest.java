@@ -12,8 +12,31 @@ public class EmployeeTest {
 
     @Before
     public void setUp() {
-        emp1 = new SalariedEmployee("Ben", Date.valueOf("2023-10-12"));
-        emp2 = new SalariedEmployee("Ben", Date.valueOf("2023-10-12"));
+//        emp1 = new DummyEmployee("Ben", Date.valueOf("2023-10-12"));
+//        emp2 = new DummyEmployee("Ben", Date.valueOf("2023-10-12"));
+        emp1 = new Employee() {
+            @Override
+            public double pay() {
+                return 0;
+            }
+
+            @Override
+            public double payTaxes() {
+                return 0;
+            }
+        };
+
+        emp2 = new Employee() {
+            @Override
+            public double pay() {
+                return 0;
+            }
+
+            @Override
+            public double payTaxes() {
+                return 0;
+            }
+        };
     }
 
     @Test
@@ -31,5 +54,22 @@ public class EmployeeTest {
     @Test
     public void equals_shouldReturnTrue_allPropertiesSame() {
         assertEquals(emp1,emp2);
+    }
+
+    //basement apartment - NAMED, MEMBER LEVEL INNER CLASS
+    private static class DummyEmployee extends Employee{
+        //we don't care about pay() and payTaxes(), we aren't testing them
+        //we only care about Employee name and hireDate
+
+        DummyEmployee (String name, Date hireDate){
+            super(name, hireDate);
+        }
+
+        public double pay() {
+            return 0;
+        }
+        public double payTaxes() {
+            return 0;
+        }
     }
 }
