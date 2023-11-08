@@ -9,7 +9,7 @@ class DuckRacer {
     //fields
     private final int id;
     private String name;
-    //creating a list because it is a linear set of objects, and it allows duplicates
+    //creating an empty Collection to hold Rewards - I can now populate the Collection and do something with it.
     private final Collection<Reward> rewards = new ArrayList<>();
 
     //constructor
@@ -19,6 +19,7 @@ class DuckRacer {
     }
 
     //business methods
+    // receives decided reward as an argument, then adds that reward to the Collection<Rewards>
     public void win(Reward reward) {
         rewards.add(reward);
     }

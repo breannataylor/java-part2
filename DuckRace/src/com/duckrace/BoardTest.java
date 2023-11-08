@@ -14,6 +14,6 @@ class BoardTest {
         board.update(18, PRIZES);
         board.update(12, DEBIT_CARD);
         board.update(14, PRIZES);
-        board.scoreBoard();
+        board.show();
     }
 }

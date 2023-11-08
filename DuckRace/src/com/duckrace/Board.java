@@ -38,9 +38,10 @@ import java.util.*;
  *   17       17    Dom        1    DEBIT_CARD
  */
 
-class Board {
+public class Board {
     private final Map<Integer,String> studentIdMap = loadStudentIdMap();
     private final Map<Integer, DuckRacer> racerMap = new TreeMap<>();
+
     /*
      * updates board by making a DuckRacer "win"
      * This could mean fetching aexisting DuckRacer from racerMpa,
@@ -77,13 +78,21 @@ class Board {
      * 1    BreAnna 4       PRIZES
      * 18   Senna   1       REWARDS
     */
-    public void scoreBoard() {
+    public void show(){
         Collection<DuckRacer> racers = racerMap.values();
-
-        for (DuckRacer racer : racers) {
-            System.out.printf("%s   %s    %s     %s\n",
-                    racer.getId(), racer.getName(), racer.getWins(), racer.getRewards());
+        if (racerMap.isEmpty()) {
+            System.out.println("\nThere are currently no results to show.\n");
         }
+        else
+            for (DuckRacer racer : racers) {
+                System.out.printf("%s   %s    %s     %s\n",
+                        racer.getId(), racer.getName(), racer.getWins(), racer.getRewards());
+            }
+    }
+
+    public int maxId() {
+        //the maximum size is the maximum number id number
+        return studentIdMap.size();
     }
 
     private Map<Integer, String> loadStudentIdMap() {
